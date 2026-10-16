@@ -1,0 +1,27 @@
+.DS_Store
+
+# Secrets and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+
+# Java / build outputs
+.gradle/
+target/
+
+# JavaScript
+node_modules/
+dist/
