@@ -1,57 +1,69 @@
 # Skill Matrix and Baseline Record
 
-Use one score per skill only after attempting the example task. Scores describe demonstrated ability, not interest or familiarity. Attach evidence for scores 2–4. Revisit monthly and update the date.
+Use one score per skill only after attempting the example task. Scores describe demonstrated ability, not interest or familiarity. Attach evidence for scores 2–4. Revisit monthly and at the Week 4, 8, 12, 16, 21 and 26 gates.
+
+Track-specific learning order is defined in [planning/tracks/README.md](../planning/tracks/README.md).
 
 ## Rating scale
 
 | Level | Demonstrated ability |
-| ---: | --- |
+|---:|---|
 | 0 — Not assessed | No recent attempt or evidence |
 | 1 — Guided | Can follow a lesson/example but needs help adapting it |
 | 2 — Independent | Can implement normal cases and diagnose common failures |
-| 3 — Robust | Adds tests/evaluation for edge cases; improves design from evidence |
+| 3 — Robust | Adds edge-case tests/evaluations and improves design from evidence |
 | 4 — Operable | Can deploy/observe/secure within stated scope and explain trade-offs |
 
-## Baseline tasks (complete during Week 1)
+## Baseline tasks (Week 1)
 
-| Area | Quick diagnostic task | Score/date | Evidence or gap |
-| --- | --- | --- | --- |
-| Python | Create an environment, import local module, parse JSON, handle invalid input | — | |
-| Testing | Write a unit test, run it, diagnose a failing assertion | — | |
-| HTTP/API | Explain request/response/status behavior and design a small JSON endpoint | — | |
-| SQL | Model a simple entity, write a join/filter, explain an index/transaction | — | |
-| Git | Create a branch, inspect diff, commit a small change, resolve a simple conflict | — | |
-| LLM basics | Call a model or explain one recent AI integration; identify failure modes | — | |
-| Evaluation | Define expected output for 5 cases and compare actual behavior | — | |
-| Frontend | Build/debug a small React/TypeScript interaction if relevant | — | |
-| Java/Spring | Create/explain a small Spring endpoint if relevant | — | |
-| Cloud/operations | Explain how to configure, deploy, inspect logs, and recover a small service | — | |
+| Area | Diagnostic task | Score/date | Evidence or gap |
+|---|---|---|---|
+| Python | Create environment, import local module, parse JSON, handle invalid input | — | |
+| Testing | Write/run unit test and diagnose a failing assertion | — | |
+| HTTP/API | Explain request/status behavior and design a small JSON endpoint | — | |
+| SQL | Model entity, write join/filter, explain index/transaction | — | |
+| Git | Create branch, inspect diff, commit and resolve a simple conflict | — | |
+| LLM basics | Explain a recent AI integration and identify failure modes | — | |
+| Evaluation | Define expected output for five cases and compare actual behavior | — | |
+| Frontend | Debug a small React/TypeScript interaction | — | |
+| Java/Spring | Explain OOP boundaries and a small Spring endpoint | — | |
+| Concurrency | Explain a race; choose a safe counter or shared-state strategy | — | |
+| Operations | Explain config, deployment, logs and recovery | — | |
 
 ## Core skill tracking
 
-| Skill | Baseline | Month 2 | Month 4 | Final target | Evidence to attach |
-| --- | ---: | ---: | ---: | ---: | --- |
-| Python project structure and packaging | — | — | — | 3 | Reproducible lab/project setup |
-| Python typing, errors, logging, tests | — | — | — | 3 | Test suite and failure-handling examples |
-| HTTP API design and validation | — | — | — | 3 | API contract, schema and tests |
-| SQL, data modeling and PostgreSQL | — | — | — | 2–3 | Migration, query and transaction decision |
-| LLM API integration and structured output | — | — | — | 3 | Provider boundary and failure tests |
-| Prompt/context and untrusted input | — | — | — | 3 | Controlled experiment and adversarial cases |
-| Data ingestion and provenance | — | — | — | 3 | Corpus manifest and repeatable importer |
-| Search/retrieval/RAG | — | — | — | 3 | Retrieval comparison and cited-answer eval |
-| Evaluation design and error analysis | — | — | — | 4 | Dataset, report, calibrated human review |
-| Observability and reliability | — | — | — | 3 | Trace, runbook and recovery example |
-| AI application security | — | — | — | 3 | Threat model and regression tests |
-| Workflow/agent/tool design | — | — | — | 2–3 | Deterministic vs agent decision evidence |
-| MCP | — | — | — | 2 if applicable | Read-only server/client or deferral note |
-| CI, packaging and deployment | — | — | — | 2–3 | CI result, runbook, demo environment |
-| React/TypeScript product work | — | — | — | Set by target role | UI interaction and accessibility evidence |
-| Java/Spring/Kafka/Flink | — | — | — | Elective | Select only from target-role evidence |
-| Technical communication | — | — | — | 3 | Diagram, design decision, demo narrative |
+| Skill | Baseline | Month 2 | Month 4 | Final target | Evidence |
+|---|---:|---:|---:|---:|---|
+| Python packaging/project structure | — | — | — | 3 | Reproducible setup |
+| Python types, errors, logging, tests | — | — | — | 3 | Test suite/failure handling |
+| Python async and bounded concurrency | — | — | — | 2–3 | Cancellation/timeout experiment |
+| Java OOP, composition and contracts | — | — | — | 3 | Domain model/equality tests |
+| Java collections/generics/streams | — | — | — | 2–3 | Complexity and edge-case lab |
+| JVM memory and profiling | — | — | — | 2 | Diagnostic note |
+| Java concurrency/JMM/locks/atomics | — | — | — | 3 | Race reproduction, tests and explanation |
+| Spring Boot/API/validation | — | — | — | 2–3 | Endpoint and integration tests |
+| Transactions/isolation/idempotency | — | — | — | 3 | Rollback/concurrency tests |
+| HTTP API design and validation | — | — | — | 3 | Contract, schema and tests |
+| SQL/data model/PostgreSQL | — | — | — | 2–3 | Migration, query and transaction decision |
+| LLM integration/structured output | — | — | — | 3 | Provider adapter/failure tests |
+| Prompt/context and untrusted input | — | — | — | 3 | Controlled and adversarial tests |
+| Ingestion/provenance | — | — | — | 3 | Corpus manifest/rebuild |
+| Search/retrieval/RAG | — | — | — | 3 | Retrieval comparison and cited-answer evaluation |
+| Evaluation/error analysis | — | — | — | 4 | Dataset, report, human review |
+| Observability/reliability | — | — | — | 3 | Trace, runbook and recovery |
+| AI security | — | — | — | 3 | Threat model and regression tests |
+| Workflow/agents/MCP | — | — | — | 2–3 | Bounded tool experiment or justified deferral |
+| React/TypeScript/accessibility | — | — | — | 2–3 | UI behavior tests and accessibility checks |
+| Distributed systems/Kafka/Flink/Redis | — | — | — | 2–3 if role-relevant | Retry/replay/fault model |
+| CI/deployment/operations | — | — | — | 2–3 | CI, runbook and demo |
+| System design/DSA | — | — | — | 2–3 | Design sheet and tested solutions |
+| Technical communication | — | — | — | 3 | Diagram, decision record and demo narrative |
 
 ## Monthly reflection
 
-- Which score changed? What artifact proves it?
-- Which capability is most limiting the next milestone?
-- Is the gap foundational, practice-related, or simply not needed for target roles?
-- What one practice task should address it next month?
+- Which score changed, and what artifact proves it?
+- Which gap currently limits the product or next milestone?
+- Is the gap foundational, practice-related, or irrelevant to the target role?
+- What one task will address it next month?
+
+Do not fill baseline scores by estimating from memory alone; complete the small diagnostic first.
