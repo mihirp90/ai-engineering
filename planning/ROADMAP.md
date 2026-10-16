@@ -1,135 +1,119 @@
-# 24-Week Applied AI Engineering Roadmap
+# 26-Week Applied AI Engineering Roadmap
 
-**Duration:** 6 months · **Pace:** 10 focused hours/week (about 240 hours) · **Primary outcome:** a reproducible research-intelligence application plus evidence of engineering, evaluation, security, and operations skills.
+**Duration:** 26 weeks · **Total effort:** approximately 390 hours · **Pace:** 15 focused hours/week. Ten hours/week go to the core AI/product sequence; the remaining five hours are defined in [Program Flow](PROGRAM_FLOW.md).
 
-This is a sequenced working plan, not a fixed-date promise. The weekly learning cadence is in [Program Flow](PROGRAM_FLOW.md). Learning objectives and module explanations are in the [curriculum](CURRICULUM.md). Weeks 8, 12, 16, and 20 are gates: use evidence to decide whether to proceed, revise, or reduce scope.
+Research Intelligence is a product hypothesis, not yet a fixed specification. Confirm the first user, task and corpus at Week 8—or revise the idea based on discovery evidence. Public/appropriately licensed data only.
 
-## Six-month flow at a glance
+## Month overview
 
-| Month | Weeks | Primary capability | Product state at month end | Gate |
-| --- | --- | --- | --- | --- |
-| 1. Build the engineering base | 1–4 | Python, API, SQL, tests, Git/CI | Reliable service skeleton | Can another developer run and verify it? |
-| 2. Add an AI task responsibly | 5–8 | Model integration, structured output, evals, product discovery | Agreed use case and measured baseline | Is the user/problem/data boundary specific enough to build? |
-| 3. Make knowledge searchable | 9–12 | Ingestion, lexical/semantic retrieval, RAG, citations | End-to-end evidence-grounded research slice | Does retrieval improve measured task outcomes? |
-| 4. Make it trustworthy | 13–16 | Evaluation, observability, reliability, security | Reviewed beta with threat model | Are failures visible and material risks mitigated? |
-| 5. Add bounded tool use | 17–20 | Workflow vs agent, MCP, optional queue | Evaluated tool workflow or documented deferral | Does an agent beat a simpler workflow safely? |
-| 6. Ship and communicate | 21–24 | CI/deployment, operations, portfolio, role alignment | Reproducible demo and career evidence | Can someone independently inspect and run the work? |
+| Month | Weeks | Focus | Month-end evidence |
+|---|---:|---|---|
+| 1 | 1–4 | Engineering foundation | Reproducible API/data service and CI |
+| 2 | 5–8 | Model integration, evaluation, product scope | Baseline evaluation and agreed MVP |
+| 3 | 9–12 | Ingestion, search, retrieval, RAG | Measured cited-answer slice |
+| 4 | 13–16 | Reliability, observability, security | Reviewed beta and threat model |
+| 5 | 17–21 | Workflows, MCP, agent decision, optional distributed processing | Bounded tool decision with evidence |
+| 6 | 22–26 | Delivery, hardening, portfolio | Reproducible demo and final evidence |
 
-## Month 1 — Engineering base
+## Month 1 — Engineering foundation
 
 ### Week 1 — Baseline and reproducible Python project
+**Learn:** interpreter/environment, modules/imports, functions, tests and Git. **Build:** parse JSON, implement a pure function, write a pytest, run a CLI and explain a stack trace. **Evidence:** skill matrix with examples and one command for checks. **Exit:** clean setup succeeds and a failed test is understood.
 
-**Learn:** Python environment/interpreter, modules/imports, virtual environments, package layout, Git status/branch/commit, pytest basics. **Build:** diagnostic tasks in `labs/python/week-01-baseline/`: parse JSON, write one pure function, write a test, run a CLI, explain a stack trace. **Evidence:** initial skill matrix ratings cite examples; new project has README, pinned/runtime guidance, one command for checks. **Exit:** clean setup succeeds and a failing test is understood and fixed.
+### Week 2 — Python quality and failure paths
+**Learn:** types, dataclasses/Pydantic, exceptions, collections, file I/O, logging, configuration and dependencies. **Build:** CLI ingestion of public JSON/CSV with validation. **Evidence:** valid, invalid, empty and duplicate input tests. **Exit:** deterministic behavior, no hard-coded secrets.
 
-### Week 2 — Python quality and external boundaries
+### Week 3 — HTTP/API contracts
+**Learn:** methods/status codes, validation, pagination, idempotency, errors and OpenAPI. **Build:** typed FastAPI create/list/get endpoints. **Evidence:** success, malformed input, not-found and dependency-failure tests. **Exit:** client contract is clear without reading implementation.
 
-**Learn:** type hints, dataclasses or Pydantic models, exceptions, context managers, logging, environment configuration, dependency boundaries; unit vs integration testing. **Build:** CLI ingestion of a small public JSON/CSV fixture, validation, useful error summaries, and structured logs. Inject malformed input and a missing-file error. **Evidence:** tests for valid, invalid, empty, and duplicate records; short note on exception vs validation error. **Exit:** behavior is deterministic and no credentials/configuration are hard-coded.
+### Week 4 — SQL, migrations, CI and Gate 1
+**Learn:** keys, constraints, joins, indexes, transactions and migrations. **Build:** PostgreSQL persistence and repeatable migration; basic lint/test CI. **Evidence:** schema diagram and clean test run. **Gate:** clean setup and reproducible persistence; otherwise strengthen foundations.
 
-### Week 3 — HTTP and service contracts
+## Month 2 — Model integration, evaluation and product scope
 
-**Learn:** request/response lifecycle, methods/status codes, JSON schema, validation, pagination, idempotency, error envelope, OpenAPI. **Build:** FastAPI service for create/list/get on an in-memory collection; define request and response models; add contract-focused tests. **Evidence:** API examples and `/docs` screenshot or saved schema; tests for 400/404 and malformed requests. **Exit:** client can predict responses from the contract without reading implementation internals.
+### Week 5 — Model adapter
+**Learn:** API contracts, tokens/context, latency/cost, timeouts, rate limits, retries and cancellation. **Build:** narrow provider interface with typed response and safe configuration. **Evidence:** success plus mocked timeout/rate-limit/malformed-response tests.
 
-### Week 4 — Relational data and first gate
+### Week 6 — Task and context design
+**Learn:** task contracts, trusted instructions vs untrusted data, examples, structured output, validation and abstention. **Build:** small extraction/summary task over fixed public texts. **Evidence:** expected properties for at least 20 representative cases and reviewed misses.
 
-**Learn:** relational design, keys, constraints, joins, indexes, transaction boundaries, migrations, connection lifecycle. **Build:** persist Week 3 records in PostgreSQL; add one migration and prove a failed operation does not partially modify data. Add CI checks for tests and lint/type checks. **Evidence:** schema diagram, migration instructions, CI result, Week 4 assessment. **Gate:** revise pace and identify Python/API gaps before model work; do not progress if the service cannot be reproduced.
+### Week 7 — Evaluation before tuning
+**Learn:** golden cases, scoring, human review, configuration versioning and regression tests. **Build:** portable evaluator recording case/config/result/scores/approximate cost/latency/reviewer notes. **Evidence:** baseline, three error categories and regressions.
 
-## Month 2 — LLM task, evaluation, product scope
+### Week 8 — Product discovery and Gate 2
+**Learn:** user/job-to-be-done, baseline workflow, value measure, data rights and non-goals. **Build:** one-page product brief with one user, research task and corpus—or replace Research Intelligence. **Evidence:** success criteria, sample queries and source shortlist. **Gate:** do not broaden implementation until scope and baseline are clear.
 
-### Week 5 — Model API and provider boundary
+## Month 3 — Ingestion, search, retrieval, RAG
 
-**Learn:** request/response payloads, tokens and context, structured outputs, timeouts, rate limits, retries, cancellation, cost/latency. **Build:** provider adapter with a typed input/output interface; configure via environment; never log secrets. Stub the provider in fast tests. **Evidence:** one successful response plus tests for timeout, rate-limit and malformed output; record baseline latency and estimated cost. **Exit:** provider-specific code is isolated from domain logic.
+### Week 9 — Source-aware ingestion
+**Learn:** parsing, normalization, provenance, checksums, deduplication and quarantine. **Build:** ingest 20–50 documents from one public/appropriately licensed collection. **Evidence:** reproducible command, corpus manifest and parser diagnostics.
 
-### Week 6 — Prompt and context design
+### Week 10 — Lexical-search baseline
+**Learn:** tokenization, full-text ranking, filters, relevance labels and top-k metrics. **Build:** passage search with stable IDs and metadata filters. Label 15–25 realistic queries. **Evidence:** lexical baseline and failed-query notes.
 
-**Learn:** separate instructions from untrusted input, task specification, examples, schema validation, uncertainty/abstention, context budgets. **Build:** small source-grounded extraction or brief-generation task using a fixed set of public texts. Write the system behavior as observable requirements, not style adjectives. **Evidence:** at least 20 representative input cases and expected properties; sample failure annotations. **Exit:** output is validated and a bad/empty answer has a defined application path.
+### Week 11 — Embeddings and hybrid retrieval
+**Learn:** embedding behavior, chunking, vector similarity, filters and hybrid ranking. **Build:** add one embedding model and compare using Week 10's query set. **Evidence:** side-by-side results and a decision grounded in evidence.
 
-### Week 7 — Evaluation-first iteration
+### Week 12 — Grounded answers and Gate 3
+**Learn:** context assembly, claim/source mapping, citation correctness, conflict and no-answer. **Build:** cited answer slice with visible passages and abstention. **Evidence:** demo, separate retrieval/answer metrics and five reviewed failures. **Gate:** citations resolve and retrieval adds measured value over search.
 
-**Learn:** test-set coverage, golden cases, deterministic metrics, human review, model judge limitations, regression tests, prompt/model versioning. **Build:** local evaluation runner that records case ID, config, output, scores, cost/latency estimate, and reviewer notes. Compare baseline with one controlled change at a time. **Evidence:** baseline report, at least 3 error categories, a regression case added for each important failure. **Exit:** a reviewer can reproduce the comparison. Prefer a small local harness over depending on a vendor-hosted eval feature.
+## Month 4 — Evaluation, observability, security, reliability
 
-### Week 8 — Product discovery and scope gate
+### Week 13 — Error analysis
+**Learn:** classify data, parsing, retrieval, context, model, validation, UI and operations failures. **Build:** prioritize by severity and fix one root cause at a time. **Evidence:** before/after evaluation and regression cases.
 
-**Learn:** user/job-to-be-done, current workaround, evidence of value, data licensing/provenance, success and non-goals. **Build:** one-page product brief for Research Intelligence; choose one user, one research task, one corpus boundary, and an MVP. Sketch a user flow and context/data boundaries. Review a small sample of current target-role job descriptions and note repeated skills. **Evidence:** signed-off scope decision record, success metric definitions, data source shortlist, updated skill matrix. **Gate:** no major product build until the user/problem and corpus are specific enough. If not, spend a week interviewing/researching instead of coding.
+### Week 14 — Observability and economics
+**Learn:** request IDs, structured logs, traces, latency percentiles, failure counts, cost estimates and privacy-aware retention. **Build:** trace request → retrieval → model → citation validation. **Evidence:** success/failure traces and baseline latency/cost report.
 
-## Month 3 — Ingestion, search, retrieval-augmented answers
+### Week 15 — Threat model and adversarial testing
+**Learn:** trust boundaries, prompt injection, leakage, unsafe rendering, authorization, dependencies and audit. **Build:** threat model and adversarial/conflicting document tests. **Evidence:** abuse cases, mitigations, residual risks and regressions.
 
-### Week 9 — Document ingestion and provenance
+### Week 16 — Reliability/security Gate 4
+**Learn:** bounded retries, timeout, graceful degradation, fallback and recovery. **Build:** simulate provider outage, empty corpus, malformed/oversized input and citation failure. **Evidence:** threat-model update, regression report, runbook. **Gate:** material failures are visible and remaining risks are explicit.
 
-**Learn:** document formats, parsing, normalization, content hashes, metadata, source attribution, duplicate detection, incremental reprocessing, error quarantine. **Build:** import 20–50 documents from one selected public corpus; retain source URL, title, dates if available, license/provenance note, fetched time, checksum, parser version. **Evidence:** repeatable ingestion command, corpus manifest, diagnostics for failed documents. **Exit:** the corpus can be rebuilt without losing provenance.
+## Month 5 — Workflows, MCP, agent decision and distributed options
 
-### Week 10 — Lexical search baseline
+### Week 17 — Deterministic workflow first
+**Learn:** state machines, retries, human checkpoints and stopping conditions. **Build:** explicit research workflow; identify decisions needing a model. **Evidence:** sequence diagram and agent/no-agent decision.
 
-**Learn:** query analysis, tokenization, full-text search, ranking, filters, precision/recall, relevance judgments. **Build:** search endpoint with lexical retrieval, metadata filters, deterministic result IDs and passage previews. Label 15–25 real queries and relevant passages. **Evidence:** retrieval dataset and first top-k baseline; include exact-name and broad-topic queries. **Exit:** search is useful without an LLM and failure cases are visible.
+### Week 18 — MCP contracts
+**Learn:** client/server, tools/resources/prompts, schemas, lifecycle, transports, consent and trust. **Build:** optional read-only search/inspection tool. **Evidence:** schema, permission boundary, test transcript and failure behavior.
 
-### Week 11 — Semantic retrieval experiment
+### Week 19 — One bounded agent and comparison
+**Learn:** tool selection, budgets, step limits, loop prevention, cancellation, approvals and injection in tool results. **Build:** one-tool agent only if useful; compare it with deterministic flow on the same cases. **Evidence:** success, invalid/unneeded calls, policy failures, cost and latency.
 
-**Learn:** embedding model input/output, vector similarity limitations, chunk sizes/overlap, metadata filtering, hybrid fusion, reranker purpose. **Build:** add embeddings to the same corpus; compare lexical vs semantic results on the exact Week 10 set. Keep data schema and embedding model/version explicit. **Evidence:** side-by-side retrieval report; record queries helped and harmed. **Exit:** choose lexical, semantic, or hybrid based on evidence; do not add reranking unless it solves a measured miss.
+### Week 20 — Async ingestion and idempotency
+**Learn:** queue/worker, at-least-once delivery, idempotency, retries, dead letters and ordering. **Build:** optional duplicate-safe background ingestion or fault-injection design lab. **Evidence:** retry experiment or evidence-backed deferral.
 
-### Week 12 — RAG answer slice and retrieval gate
+### Week 21 — Distributed-systems gate
+**Learn:** partitioning, consumer groups, event time/state/checkpoints, caching and service boundaries. **Build:** workload-backed choice about Kafka/Flink/Redis; prototype only if justified. **Evidence:** capacity assumptions, fault/replay model, decision record. **Gate:** keep only complexity that solves a defined requirement.
 
-**Learn:** evidence selection, context assembly, citation mapping, grounding, no-answer behavior, source conflict, citation correctness. **Build:** answer a question from retrieved passages; expose source passages and citations; abstain when evidence is insufficient. Score retrieval and answer separately. **Evidence:** reproducible end-to-end demo; report on the fixed set; 5 reviewed failure examples. **Gate:** continue only if citations resolve and answers are more useful than search alone. Simplify or change corpus if the data is poor.
+## Month 6 — Delivery, operations, hardening and portfolio
 
-## Month 4 — Quality, observability, security
+### Week 22 — Reproducible packaging and CI
+**Learn:** packages/containers, config separation, migrations, health checks and dependency checks. **Build:** CI for tests, lint/type checks and evaluation smoke cases. **Evidence:** clean CI and tested setup instructions.
 
-### Week 13 — Error analysis and reliability patterns
+### Week 23 — Deployment
+**Learn:** hosting choices, secrets, networking, logs/metrics, resource sizing and cost. **Build:** low-cost deployment or reproducible local demo if hosting is not justified. **Evidence:** launch steps, health check and teardown.
 
-**Learn:** error taxonomy (ingestion, retrieval, context, model, validation, UX, operations), timeout/retry policy, empty state, degraded mode, idempotency. **Build:** classify all known misses; improve one issue per category only where supported. Add deterministic validation and bounded retry behavior. **Evidence:** before/after eval report; explicit no-provider/no-results behavior. **Exit:** recurring errors can be traced to a system stage.
+### Week 24 — Operations and recovery
+**Learn:** runbooks, backup/recovery, incident triage, limits and data retention. **Build:** recovery/debug drill. **Evidence:** runbook and recorded failure exercise.
 
-### Week 14 — Observability and cost/latency
+### Week 25 — Integration and hardening
+**Learn:** end-to-end regression, UI/accessibility, bottlenecks and technical debt. **Build:** integrate scoped features; rerun evaluations and tests; fix source-inspection/failure-state issues. **Evidence:** release checklist, regression comparison and architecture diagram.
 
-**Learn:** request IDs, structured logs, traces, latency percentiles, token and provider costs, privacy-aware data retention. **Build:** trace request → query transform (if any) → retrieval → model → citation validation; add safe logs and a simple local report. **Evidence:** trace of one success and two failure cases, latency/cost estimate by stage. **Exit:** diagnose why an answer failed without dumping secrets or relying on model-visible chain-of-thought.
+### Week 26 — Final assessment and next-quarter plan
+**Learn:** retrospective, evidence-based skill claims and role mapping. **Build:** final evaluation report, demo, skill matrix, two engineering trade-off stories and a 90-day plan. **Evidence:** reproducible product, provenance, threat model, runbook and honest limitations. **Gate:** an independent reviewer can inspect/run the work and understand quality criteria.
 
-### Week 15 — Security threat model and adversarial tests
+## Decision gates
 
-**Learn:** assets, trust boundaries, prompt injection, indirect instruction attacks in documents, sensitive-information exposure, unsafe output rendering, supply chain/model provenance. **Build:** threat model for user, corpus, ingestion, model, database, API, logs; include adversarial public document/query cases; mitigate using isolation, validation, access control, and explicit tool boundaries. **Evidence:** threat table with likelihood/impact, mitigations, residual risks, test outcomes. **Exit:** untrusted document content cannot silently become authorization or tool instructions.
+| Week | Gate | Evidence |
+|---:|---|---|
+| 4 | Engineering foundation | Clean setup, API, migrations, tests, CI |
+| 8 | Product/model scope | User/task boundary, baseline cases and data source |
+| 12 | Retrieval/RAG | Corpus manifest, retrieval report and citations |
+| 16 | Trust/reliability | Threat model, traces and adversarial regressions |
+| 21 | Agent/distributed decision | Bounded tool evaluation or justified deferral; workload decision |
+| 26 | Portfolio/final | Demo, report, runbook, final matrix and next plan |
 
-### Week 16 — Product review and security gate
-
-**Learn:** release readiness, accessibility/usability feedback, recovery/backup basics, incident notes. **Build:** walk a reviewer through a focused research task; fix top 2–3 evidenced problems; simulate provider failure and malformed document; update threat model. **Evidence:** review notes, release checklist, eval regression report, updated skill matrix. **Gate:** no tool execution or public deployment until key data/security risks are understood and mitigated.
-
-## Month 5 — Workflow, agents, MCP, optional distributed systems
-
-### Week 17 — Deterministic workflow before agent
-
-**Learn:** state machines, workflow graphs, decision points, retries, human review, stopping conditions; distinguish a workflow with model steps from an agent with model-selected actions. **Build:** express research workflow as explicit stages; mark decisions the model must make and decisions code should own. **Evidence:** sequence/state diagram and decision record: agent needed / deferred / not needed. **Exit:** there is a specific measurable reason for adding agent autonomy.
-
-### Week 18 — MCP and tool contracts
-
-**Learn:** MCP client/server, tools/resources/prompts, schema validation, transports/lifecycle, versioning and trust. **Build:** if useful, expose one read-only operation (e.g., search documents) through a local MCP server; otherwise write a protocol evaluation note and keep the product simple. **Evidence:** tool schema, permission boundary, protocol test/manual transcript, failure behavior. **Exit:** no arbitrary shell, write, or account-access tool is exposed.
-
-### Week 19 — Bounded agent and agent evaluation
-
-**Learn:** tool selection and arguments, state persistence, budget/step limits, loop prevention, cancellation, approval checkpoint, prompt injection through tool results. **Build:** minimal one-tool agent for one research task only if it beats deterministic flow; compare both with identical eval cases. **Evidence:** task success, unnecessary calls, invalid calls, policy violation, latency and cost counts. **Exit:** retain the agent only if measured value exceeds complexity and security risk.
-
-### Week 20 — Optional asynchronous ingestion and gate
-
-**Learn:** queue/worker separation, at-least-once delivery, idempotency, retry and dead-letter queues, ordering and schema evolution; Kafka/Flink concepts only as needed. **Build:** optional background ingestion job with duplicate-safe processing and retry visibility. If not needed, do a written architecture exercise using the product’s real workload assumptions. **Evidence:** duplicate/retry experiment or architecture decision record; Month 5 review. **Gate:** keep distributed infrastructure out of the MVP unless a real throughput/reliability requirement exists.
-
-## Month 6 — Delivery, operations, portfolio
-
-### Week 21 — Reproducible delivery and CI
-
-**Learn:** container basics, config separation, migrations, health checks, GitHub Actions workflow, supply-chain/security checks. **Build:** CI runs formatting/lint, type checks, unit/integration tests, and a small deterministic eval smoke set; add container/dev setup if useful. **Evidence:** clean CI run, README setup tested from a clean environment, no secret in tracked files. **Exit:** a fresh checkout has a documented route to run.
-
-### Week 22 — Deployment and operations
-
-**Learn:** deployment choices, secrets, logs/metrics, backup/recovery, health/readiness, rate limits, cost guardrails, teardown/data retention. **Build:** deploy a small demo or document and verify local deployment if hosting introduces unnecessary cost/risk; add runbook and failure procedures. **Evidence:** demo URL or recorded local launch steps; recovery/debug exercise; cost/latency budget and known limit. **Exit:** operators know how to start, inspect, and recover the demo.
-
-### Week 23 — Portfolio communication
-
-**Learn:** concise architecture storytelling, decision records, technical demo design, honest claims, portfolio readability. **Build:** project landing README, architecture diagram, evaluation summary, threat model summary, data provenance, demo script, limitations and future work. Ask one person unfamiliar with the code to follow the setup. **Evidence:** completed reviewer checklist and feedback fixes. **Exit:** a reviewer can explain what problem is solved and how quality is measured.
-
-### Week 24 — Final assessment and next-quarter plan
-
-**Learn:** retrospective, role requirement mapping, evidence-based skill claims, gap prioritization. **Build:** rerun all evaluations, complete final rubric and skill matrix, compare 8–12 current roles, select next 90-day specialization (applied AI, platform, ML engineering, enterprise Java, or data/streaming). **Evidence:** final report, portfolio demo, two interview stories (failure/trade-off), next 90-day roadmap. **Exit:** claims link to demonstrable work; unresolved gaps and limits are explicit.
-
-## Monthly gates and what to do when a gate fails
-
-| Gate | Proceed when | If not yet true |
-| --- | --- | --- |
-| Week 4 | Clean setup, API/data behavior, tests and migration are reproducible | Spend the next week strengthening the missing foundation before model work |
-| Week 8 | One user, task, corpus boundary and measurable success criteria are named | Do discovery; revise the product rather than inventing features |
-| Week 12 | Search/RAG has a measured baseline and citations are inspectable | Revisit corpus, query set, retrieval or abstention; do not add agents |
-| Week 16 | Important security/reliability failures are handled and observable | Keep deployment/tool scope local and remediate first |
-| Week 20 | Agent/tool decision is measured and permissions are narrow | Document deferral and use remaining time for product quality |
-| Week 24 | A reviewer can run/inspect the work and understand limits | Finish the artifact and evidence before starting another project |
+If a gate fails, extend the calendar or reduce scope; do not skip verification to keep a date.
