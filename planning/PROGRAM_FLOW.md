@@ -1,89 +1,71 @@
 # Program Flow and Working Method
 
-This file explains how the curriculum, labs, flagship project, reviews, and career evidence fit together. The [24-week roadmap](ROADMAP.md) is the schedule; the [curriculum](CURRICULUM.md) explains what to learn and why.
+This file explains how the curriculum, topic tracks, labs, flagship product, reviews and career evidence fit together. The [26-week roadmap](ROADMAP.md) is the core product schedule; the [topic track index](tracks/README.md) contains independent section-wise roadmaps.
 
-## End-to-end learning flow
+## Weekly 15-hour budget
 
-```mermaid
-flowchart LR
-  A[Baseline and target role] --> B[Engineering foundations]
-  B --> C[LLM feature with a measured baseline]
-  C --> D[Product problem and data boundary]
-  D --> E[Ingestion and search]
-  E --> F[RAG and citations]
-  F --> G[Evaluation and error analysis]
-  G --> H[Security and reliability]
-  H --> I[Bounded tools / MCP if justified]
-  I --> J[Deployment and operations]
-  J --> K[Portfolio evidence and career review]
-  G -->|failed criterion| F
-  H -->|risk not mitigated| G
-  K -->|new role requirements| A
-```
+| Work block | Hours/week | Purpose |
+|---|---:|---|
+| Core roadmap and flagship product | 10 | Concepts, build, verification and debugging |
+| One selected topic track | 3 | Deepen one topic sequence; don't split time across every track |
+| System design or DSA | 1 | Alternate weekly and connect practice to real engineering |
+| Learning log and planning | 1 | Record evidence, misses, decisions and next task |
+| **Total** | **15** | About 390 hours over 26 weeks |
 
-Each capability follows: **problem → baseline → small implementation → evaluation → failure analysis → revision → documented decision**. Add a framework, vector database, or agent only after evidence shows a need.
+## Learning loop
+
+**Problem → baseline → primary source → small experiment → independent implementation → tests/evaluation → failure analysis → decision record.**
+
+The end-to-end core flow is:
+
+1. Baseline and target-role evidence.
+2. Engineering foundations.
+3. Model-backed task with a measured baseline.
+4. Product problem and data boundary.
+5. Ingestion and search.
+6. RAG and citations.
+7. Evaluation and error analysis.
+8. Security and reliability.
+9. Bounded tools/MCP only if justified.
+10. Deployment, operations, portfolio and career review.
+
+Add frameworks, vector stores, distributed infrastructure or agents only when evidence shows a need.
 
 ## Workstreams
 
 | Workstream | Main weeks | Contribution |
-| --- | --- | --- |
-| Engineering craft | 1–4, 21–22 | Reproducible Python, API/data design, tests, CI, deployment and operations |
-| Applied AI | 5–8 | Provider boundary, structured outputs, context design, task-specific evaluation |
-| Research product | 8–16 | User problem, corpus, ingestion, lexical and semantic search, cited answers |
-| Trust and reliability | 7, 13–16, 19, 22 | Evals, observability, failure handling, security boundaries, cost and latency control |
-| Tool-use systems | 17–20 | Deterministic workflows, MCP, constrained orchestration, asynchronous processing |
-| Portfolio and career | 1, 8, 12, 16, 20, 23–24 | Evidence, role-market review, narrative, demo, next plan |
+|---|---|---|
+| Core AI/product | 5–26 | Model adapter, evaluation, research workflow, retrieval and delivery |
+| Python engineering | 1–4, then throughout | Packages, API/data work, testing and integrations |
+| Java/JVM/Spring | Focus blocks in topic track | OOP, collections, concurrency, JVM, transactions, async services |
+| SQL/data/search | 4, 9–12 and selected track blocks | Modeling, provenance, lexical/semantic retrieval and indexing |
+| Frontend | Selected track blocks after API stability | Accessible React/TypeScript UI and reliable async behavior |
+| Distributed systems | 20–21 and selected track blocks | Queues, idempotency, Kafka/Flink/Redis when justified |
+| Trust/operations | 7, 13–16, 22–25 | Evaluation, traces, security, failure handling and recovery |
+| Career/evidence | 4, 8, 12, 16, 21, 26 | Skill matrix, role evidence, architecture explanations and portfolio |
 
-## Weekly cadence (10-hour baseline)
+## Suggested cadence
 
-| Session | Time | Activity | Required output |
-| --- | ---: | --- | --- |
-| A. Learn | 1.5 h | Read the assigned primary source; write notes and questions | Short concept note |
-| B. Guided experiment | 2 h | Reproduce one small example; change one variable | Working experiment and observation |
-| C. Independent build | 3 h | Implement the roadmap slice in a lab or the product | Code, diagram, or decision record |
-| D. Verify | 2 h | Add/run tests or evals; inspect failures and logs | Evidence artifact and issue list |
-| E. Review | 1.5 h | Explain what changed, record the lesson, plan next session | Learning-log entry and progress update |
+Use the core 10-hour block flexibly: about 2 hours for primary reading/concepts, 2 for guided experiment, 4 for independent implementation, 1 for testing/evaluation and 1 for failure analysis/write-up. The separate 3-hour track block should produce a mini-lab, test, benchmark, diagram or explanation. Use the 1-hour reflection block to update progress. Use the remaining hour for either DSA or system design, alternating weekly.
 
-If a week is missed, resume at the next incomplete outcome. Do not compress two weeks by skipping verification or write-up. With less time, stretch the calendar; with more time, deepen experiments rather than adding unrelated tools.
+If a week is missed, resume from the next incomplete outcome. Do not compress weeks by skipping tests or reflection. Extend the calendar before sacrificing evaluation/security quality.
+
+## Track-selection rule
+
+Tracks are a catalog of sequenced roadmaps, not ten simultaneous commitments. Prioritize one track at a time based on the product task and the skill matrix. Suggested first priorities: Python foundations; then Java OOP/concurrency/Spring; SQL/search; React/TypeScript; distributed systems and delivery. Reorder with evidence from current target-role postings.
 
 ## Artifact path
 
-1. Curriculum concept → concise note in `notes/concepts/`.
-2. Small exercise → isolated, named lab in `labs/python/`, `labs/rag/`, `labs/mcp/`, or `labs/agents/`.
-3. Reusable feature → flagship project only when it supports the agreed user workflow.
-4. Evidence → tests, labeled examples, evaluation results, decision records, demo notes.
-5. Reflection → `progress/LEARNING_LOG.md`, `PROGRESS.md`, and monthly skill-matrix update.
+- Concept → concise note in `notes/concepts/`.
+- Exercise → named lab.
+- Reusable feature → flagship product only when it supports the agreed workflow.
+- Evidence → tests, labeled cases, evaluation reports, traces and decision records.
+- Reflection → `progress/LEARNING_LOG.md` and `progress/PROGRESS.md`; update the skill matrix monthly and at gates.
 
-Avoid copying whole tutorials into the project. Record what you learned, tested, and decided.
+## Monthly review
 
-## Project delivery loop
-
-```mermaid
-flowchart TD
-  P[User question / use case] --> S[Scope and data boundary]
-  S --> D[Baseline using simple search or manual process]
-  D --> T[Representative labeled evaluation cases]
-  T --> I[Smallest implementation]
-  I --> E[Run evals; inspect traces and misses]
-  E -->|below target| A[Classify error: data, retrieval, prompt, model, UX, or ops]
-  A --> I
-  E -->|meets target| R[Threat and reliability review]
-  R -->|blocker| I
-  R -->|ready| U[User review / release candidate]
-  U --> M[Measure usage, cost, latency, and feedback]
-  M --> T
-```
-
-## Monthly review and replanning
-
-At Weeks 4, 8, 12, 16, 20, and 24:
-
-1. Re-run the prior gate’s checks.
-2. Update the skill matrix from concrete artifacts.
-3. Review 8–12 current job descriptions for the intended role/geography; capture repeated responsibilities, not every keyword.
-4. Choose one gap that changes the next month’s work. Defer the rest.
-5. Revisit scope, weekly hours, and relevant resource versions.
+At Weeks 4, 8, 12, 16, 21 and 26: rerun the previous gate; update the skill matrix from artifacts; review 8–12 current postings at career-check weeks; select one gap that changes the next period; revisit scope, hours, data provenance, costs and resource versions.
 
 ## Completion definition
 
-The program produces a coherent evidence set: a reproducible applied-AI product, meaningful evaluation suite, clear data provenance, architecture and threat model, observable failure behavior, runnable demo, and an honest account of limitations. Finishing videos or collecting certificates alone does not satisfy the outcome.
+A reproducible applied-AI product, meaningful evaluation suite, clear data provenance, architecture and threat model, observable failures, runbook, runnable demo and honest limitations. Finishing videos or certificates alone does not satisfy the outcome.
