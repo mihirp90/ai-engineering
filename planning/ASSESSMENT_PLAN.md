@@ -1,69 +1,72 @@
 # Assessment and Evidence Plan
 
-## Assessment philosophy
+## Philosophy
 
-Assessment should show independent engineering judgment, not just recall or a working happy path. Every substantial feature gets representative examples before implementation, a baseline, a failure review, and a repeatable regression check. Use model-graded scores only as supporting evidence; humans calibrate the criteria and inspect consequential misses.
+Assessment must show independent engineering judgment, not just recall or a happy-path demo. Every substantial feature gets representative cases, a baseline, failure review, and repeatable regression checks. Automated/model-graded scores support but do not replace human review.
 
-## Gate map
+## Gates
 
-| Gate | Required artifact | Pass criteria | If it misses |
-| --- | --- | --- | --- |
-| Week 1 baseline | Skill matrix and diagnostic lab | Gaps and strengths have concrete examples; clean setup works | Add foundation practice to Month 1 |
-| Week 4 engineering | API, schema/migration, tests and CI evidence | Another person can reproduce; core success/error cases tested; migration repeatable | Extend the missing Python/API/SQL material before AI features |
-| Week 8 product/LLM | Scope brief, user flow, baseline eval set | One user/task/data boundary; baseline and success criterion are measurable | Revisit discovery; don't build unspecified scope |
-| Week 12 retrieval/RAG | Corpus manifest, labeled retrieval set, RAG eval report | Provenance retained; citations resolve; no-answer works; retrieval compared to baseline | Improve corpus/query labels or simplify to search |
-| Week 16 trust/reliability | Threat model, traces, adversarial regression set | Major trust boundaries identified; no critical open issue hidden; failure modes visible | Keep deployment and tools local; remediate |
-| Week 20 tool/agent | Decision record and tool evaluation | Agent is measured against deterministic flow; if used, tool access is narrow and bounded | Defer agent and invest in core product quality |
-| Week 24 portfolio | Runnable demo, report, runbook, final matrix | Independent reviewer can understand, reproduce/inspect, and identify limits | Finish evidence before new project work |
+| Gate | Required evidence | Pass criteria | If it misses |
+|---|---|---|---|
+| Week 1 baseline | Skill matrix + diagnostic lab | Strengths/gaps have concrete examples; clean setup works | Adjust foundations to actual gaps |
+| Week 4 engineering | API, schema/migration, tests and CI | Another developer can reproduce; core failures tested | Repair Python/API/SQL basics |
+| Week 8 product/LLM | Scope brief, user flow, baseline set | One user/task/data boundary and measurable criterion | Revisit discovery; don't build unspecified scope |
+| Week 12 retrieval/RAG | Corpus manifest, labeled queries, evaluation report | Provenance retained, citations resolve, no-answer works | Improve corpus/retrieval or simplify |
+| Week 16 trust/reliability | Threat model, traces, adversarial regressions | Trust boundaries and material failure modes visible | Limit deployment/tools and remediate |
+| Week 21 tools/distributed | Agent decision/evaluation and workload decision | Tool use bounded and justified; infrastructure evidence-based | Document deferral; prioritize core reliability |
+| Week 26 portfolio | Demo, report, runbook, final matrix | Independent reviewer can run/inspect and understand limits | Finish evidence before new work |
 
-## Rubric (score each 0–4)
+## Rubric (0–4)
 
 | Score | Meaning | Evidence |
-| ---: | --- | --- |
-| 0 | Not demonstrated | No artifact or cannot explain the concept |
-| 1 | Followed | Completed a tutorial with substantial guidance; cannot yet adapt it |
-| 2 | Independent on normal cases | Built a small feature and handled expected inputs |
-| 3 | Robust and evaluated | Tests/evals cover failures; results inform design changes |
-| 4 | Operable and explainable | Observed, secure within stated scope, reproducible; trade-offs and limits are clear |
+|---:|---|---|
+| 0 | Not demonstrated | No artifact or cannot explain |
+| 1 | Followed | Tutorial completed with substantial guidance; cannot adapt |
+| 2 | Independent on normal cases | Built a feature and handled expected inputs |
+| 3 | Robust and evaluated | Failure cases tested; results informed changes |
+| 4 | Operable and explainable | Reproducible, observed, secure within scope; trade-offs and limits are clear |
 
-For the Week 24 core outcome, target at least 3 in software quality, retrieval, evaluation, reliability, and security; at least 2 in remaining core areas. Do not inflate scores: attach a concrete evidence link or example to every score of 3 or 4.
+By Week 26, target at least 3 in software quality, retrieval, evaluation, reliability and security; at least 2 in other core areas. Scores 3–4 require evidence links/examples.
 
 ## Product evaluation suite
 
-Maintain a small version-controlled set initially, growing from 20–30 baseline cases to around 50–100 curated cases if time allows. Quality matters more than size. Each case should have an ID, user intent, input, expected behavior, source references where relevant, labels, severity, and review notes.
+Start with 20–30 representative cases; expand toward 50–100 curated cases only if time and value justify it. Each case has ID, intent, input, expected behavior, source references, labels, severity and review notes.
 
-### Test slices
+Test slices:
+1. Typical answerable questions.
+2. No-answer cases where the corpus lacks evidence.
+3. Conflicting or dated sources.
+4. Retrieval edge cases: exact names, synonyms, broad/narrow queries, filters and duplicates.
+5. Ingestion errors: malformed, empty, oversized, unsupported or duplicate documents.
+6. Security cases: direct/indirect injection, secret-seeking and unsafe rendering.
+7. Operations cases: provider timeout/rate-limit, database unavailable, empty corpus and retry exhaustion.
+8. Tool-use cases only if implemented: invalid arguments, unauthorized operation, unavailable tool, loop, cancellation and budget exhaustion.
 
-1. **Typical questions:** answerable from one or more documents.
-2. **No-answer:** corpus lacks the evidence; system should abstain or say what is missing.
-3. **Conflicting/dated sources:** identify conflict or temporal limitation rather than flatten it.
-4. **Retrieval edge cases:** exact names, synonyms, broad/narrow query, metadata filter, duplicate passage.
-5. **Ingestion edge cases:** malformed, empty, oversized, unsupported, duplicate documents.
-6. **Security:** direct and indirect prompt-injection content, secret-seeking content, unsafe rendered output.
-7. **Operations:** provider timeout/rate limit, database unavailable, empty corpus, retry exhaustion.
-8. **Tool use (only if implemented):** invalid arguments, unauthorized operation, unavailable tool, loop, cancellation, budget exhaustion.
+## Measures
 
-### Metrics and review
+- **Retrieval:** relevant passage at k, precision/recall at k or reciprocal rank, source coverage.
+- **Answer:** task completion, support for material claims, citation correctness, appropriate abstention.
+- **Tool workflow:** task success, valid/necessary calls, policy violations, no looping.
+- **System:** latency distribution, error rate, approximate cost/task, retries and availability.
+- **Human review:** blind-review a sample; compare automated scores with reviewer judgment and log disagreements.
 
-- **Retrieval:** relevant passage at k; precision/recall at k or reciprocal rank on human labels; exact-source coverage.
-- **Answer:** task completion against a checklist; factual support of material claims; citation resolution/correctness; appropriate abstention.
-- **Tool workflow:** task success; valid and necessary calls; permission/policy violations; completion without loop.
-- **System:** latency distribution, error rate, estimated cost/task, retries, and availability in the tested setup.
-- **Human review:** blind-review a sample of outputs; compare automated score to reviewer judgment; record disagreement and revise rubric.
+Never let a single aggregate score hide severe misses. Record case-set and configuration versions for each comparison.
 
-Never reduce quality to one aggregate score. Keep failure examples, severity, responsible stage, and decision taken. Report the dataset version and system configuration for each comparison.
+## Feature review checklist
 
-## Review checklist for a feature
-
-- [ ] User problem and success behavior are stated.
+- [ ] Problem and success behavior stated.
 - [ ] Baseline and representative cases exist before tuning.
-- [ ] Input/output contract and failure paths are defined.
-- [ ] Tests cover normal, boundary, malformed, and dependency failures as appropriate.
-- [ ] Results can be traced to a versioned implementation/configuration.
-- [ ] Quality, latency, and approximate cost were considered.
-- [ ] Trust boundaries, data provenance, and residual risks are documented.
-- [ ] README or design note explains how to reproduce and interpret evidence.
+- [ ] Input/output contract and failure paths defined.
+- [ ] Normal, boundary, malformed and dependency failures tested.
+- [ ] Results trace to a versioned implementation/configuration.
+- [ ] Quality, latency and approximate cost considered.
+- [ ] Trust boundaries, provenance and residual risks documented.
+- [ ] Reproduction steps and interpretation documented.
 
-## Evidence folder convention
+## Topic-track assessment
 
-Store concise evidence alongside the lab or project: `evals/` for datasets/reports, `docs/decisions/` for decision records, `docs/threat-model.md`, `docs/runbook.md`, and a demo script. Keep datasets small and legally safe. Never commit secrets, private customer/employer content, or access tokens.
+Each chosen topic unit must produce evidence: runnable mini-lab, test suite, benchmark, architecture/decision note, or explanation with examples. Reading alone is not completion. Use the same 0–4 rubric in the skill matrix.
+
+## Evidence conventions
+
+Store evaluation data/reports in `evals/`, decisions in `docs/decisions/`, threat model in `docs/threat-model.md`, runbook in `docs/runbook.md`. Keep data legally safe; never commit secrets, private employer/customer content or tokens.
